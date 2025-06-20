@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+      {{ form.username.label(class="form-label") }}<br>
+      {{ form.username(class="form-control", size=32) }}
+      {% for error in form.username.errors %}
+        <div class="form-text text-danger">[{{ error }}]</div>
+      {% endfor %}
+    </div>
+    <div class="mb-3">
+      {{ form.about_me.label(class="form-label") }}<br>
+      {{ form.about_me(class="form-control", cols=50, rows=4) }}
+      {% for error in form.about_me.errors %}
+        <div class="form-text text-danger">[{{ error }}]</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}

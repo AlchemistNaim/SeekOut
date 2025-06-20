@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+  <table class="table mb-4">
+    <tr valign="top">
+      <td class="align-middle" style="width: 150px;">
+        <img src="{{ user.avatar(128) }}" class="rounded-circle img-fluid" alt="User avatar">
+      </td>
+      <td>
+        <h1 class="mb-3">User: {{ user.username }}</h1>
+        {% if user.about_me %}
+          <p>{{ user.about_me }}</p>
+        {% endif %}
+        {% if user.last_seen %}
+          <p class="text-muted">Last seen on: {{ user.last_seen }}</p>
+        {% endif %}
+        <p class="mb-3">
+          <strong>{{ user.followers.count() }}</strong> followers, <strong>{{ user.followed.count() }}</strong> following
+        </p>
+
+        {% if user == current_user %}
+          <a href="{{ url_for('edit_profile') }}" class="btn btn-outline-primary btn-sm">Edit your profile</a>
+        {% elif not current_user.is_following(user) %}
+          <form action="{{ url_for('follow', username=user.username) }}" method="post" class="d-inline">
+            {{ form.hidden_tag() }}
+            {{ form.submit(class="btn btn-success btn-sm", value='Follow') }}
+          </form>
+        {% else %}
+          <form action="{{ url_for('unfollow', username=user.username) }}" method="post" class="d-inline">
+            {{ form.hidden_tag() }}
+            {{ form.submit(class="btn btn-danger btn-sm", value='Unfollow') }}
+          </form>
+        {% endif %}
+      </td>
+    </tr>
+  </table>
+
+  <hr>
+
+  {% for post in posts %}
+    <div class="mb-4">
+      {% include '_post.html' %}
+    </div>
+  {% endfor %}
+
+  <div class="d-flex justify-content-between">
+    {% if prev_url %}
+      <a href="{{ prev_url }}" class="btn btn-outline-secondary">Newer posts</a>
+    {% endif %}
+    {% if next_url %}
+      <a href="{{ next_url }}" class="btn btn-outline-secondary ms-auto">Older posts</a>
+    {% endif %}
+  </div>
+{% endblock %}

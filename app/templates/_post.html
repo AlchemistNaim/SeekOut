@@ -1,0 +1,13 @@
+<table class="table table-borderless mb-0">
+  <tr valign="top">
+    <td style="width: 50px;">
+      <img src="{{ post.author.avatar(36) }}" class="rounded-circle" alt="Avatar">
+    </td>
+    <td>
+      <a href="{{ url_for('user', username=post.author.username) }}" class="fw-bold text-decoration-none">
+        {{ post.author.username }}
+      </a> says:<br>
+      <p class="mb-0">{{ post.body }}</p>
+    </td>
+  </tr>
+</table>
