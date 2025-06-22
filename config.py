@@ -3,8 +3,10 @@ basedir = os.path.abspath (os.path.dirname (__file__))
 
 class Config:
 	SECRET_KEY = os.environ.get ('SECRET_KEY') or 'only-naim-will-guess'
-	SQLALCHEMY_DATABASE_URI = os.environ.get ('DATABASE_URI') or \
-		'sqlite:///' + os.path.join (basedir, 'app.db')
+	uri = os.getenv("DATABASE_URL", "sqlite:///app.db")
+	if uri.startswith("postgres://"):
+	    uri = uri.replace("postgres://", "postgresql://", 1)
+	SQLALCHEMY_DATABASE_URI = uri
 	SQLALCHEMY_TRACK_MOODIFICATIONS = False
 
 	MAIL_SERVER = os.environ.get ('MAIL_SERVER')
