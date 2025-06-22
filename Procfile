@@ -1,1 +1,1 @@
-web: python render_db_setup.py
+web: gunicorn microblog:app
