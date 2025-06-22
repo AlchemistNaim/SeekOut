@@ -6,6 +6,8 @@ class Config:
 	uri = os.getenv("DATABASE_URL", "sqlite:///app.db")
 	if uri.startswith("postgres://"):
 	    uri = uri.replace("postgres://", "postgresql://", 1)
+	if 'render.com' in uri:
+    uri += '?sslmode=require'
 	SQLALCHEMY_DATABASE_URI = uri
 	SQLALCHEMY_TRACK_MOODIFICATIONS = False
 

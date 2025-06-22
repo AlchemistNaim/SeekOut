@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Flask environment settings
+instance/
+.flaskenv
+.env
+
+# Local SQLite database
+app.db
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+coverage.xml
+
+# Logs and local debug
+*.log
+
+# Build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Migrations compiled files
+migrations/*.pyc
+migrations/__pycache__/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode settings
+.vscode/
+
+# Python virtual environment metadata (pipenv, poetry, etc.)
+Pipfile.lock
+poetry.lock
+
+# Gunicorn socket or pid files
+*.pid
+*.sock
+
+# Render/Deployment
+render_db_init.py
